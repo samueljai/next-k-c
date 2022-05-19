@@ -11,6 +11,7 @@
         "test:ci": "jest --ci"
     },
     "dependencies": {
+        "classnames": "^2.3.1",
         "next": "12.1.6",
         "next-router-mock": "^0.6.9",
         "react": "18.1.0",

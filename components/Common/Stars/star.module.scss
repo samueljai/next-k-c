@@ -1,0 +1,9 @@
+.star__image {
+    height: 15px;
+    width: 15px;
+    margin: 0 5px 0 0;
+
+    &:last-of-type {
+        margin: 0;
+    }
+}
