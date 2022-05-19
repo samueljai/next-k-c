@@ -1,0 +1,19 @@
+@import './variables.module.scss';
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    background-color: $kinBackgroundColor;
+    color: $kinMediumColor;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+}
