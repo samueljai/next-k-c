@@ -1,5 +1,5 @@
 import SortButton, { SortButtonType } from './SortButton';
-import './sortBy.scss';
+import styles from './sortBy.module.scss';
 
 type SortByProps<T> = {
     classname: string;
@@ -8,9 +8,11 @@ type SortByProps<T> = {
 };
 
 function SortBy<T>({ classname, testId, sortButtons }: SortByProps<T>) {
+    const sortByClassname = `sortBy__${classname}`;
+
     return (
         <section
-            className={`sortBy__${classname}`}
+            className={styles[sortByClassname]}
             data-testid={`sortBy__${testId}`}
         >
             {sortButtons &&
