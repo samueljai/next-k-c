@@ -1,18 +1,23 @@
-import useSWR from 'swr';
+import { InferGetServerSidePropsType } from 'next';
 import Food from '../../components/Food/Food';
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
-function index() {
-    const { data, error } = useSWR(
-        'https://pair-programming-test.s3.eu-west-2.amazonaws.com/cuisine.json',
-        fetcher
+export const getServerSideProps = async () => {
+    const response = await fetch(
+        'https://pair-programming-test.s3.eu-west-2.amazonaws.com/cuisine.json'
     );
+    const data = await response.json();
 
-    if (error) return <div>Failed to load</div>;
-    if (!data && !error) return <div>Loading...</div>;
+    return {
+        props: { foodList: data },
+    };
+};
 
-    return <Food foodList={data} />;
+function index({
+    foodList,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+    if (!foodList) return <div>Loading...</div>;
+
+    return <Food foodList={foodList} />;
 }
 
 export default index;
