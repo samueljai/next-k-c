@@ -3,30 +3,38 @@ import SubHeader from '../Common/SubHeader/SubHeader';
 import FoodList from './components/FoodList/FoodList';
 import { FoodItemProps } from './components/FoodListItem/FoodListItem';
 import { SortButtonType } from '../Common/Sort/SortButton';
-import { mockFoodListData } from '../../mocks/foodListDataMock';
 import styles from './food.module.scss';
 import SortBy from '../Common/Sort/SortBy';
 import orderBy from 'lodash.orderby';
 
+type FoodProps = {
+    foodList: FoodItemProps[] | null;
+};
 type SelectedFieldType = 'name' | 'origin' | 'starRating';
 type SelectedOrderType = 'asc' | 'desc';
 type SortFieldButtonsType = SortButtonType<SelectedFieldType>[];
 type SortOrderButtonsType = SortButtonType<SelectedOrderType>[];
 
-const Food = () => {
-    const [foodList, setFoodList] = useState<FoodItemProps[] | null>(null);
+const Food = ({ foodList }: FoodProps) => {
+    const [sortedFoodList, setSortedFoodList] = useState<
+        FoodItemProps[] | null
+    >(null);
     const [selectedField, setSelectedField] =
         useState<SelectedFieldType>('name');
     const [selectedOrder, setSelectedOrder] =
         useState<SelectedOrderType>('asc');
 
     useEffect(() => {
-        const orderedFoodList = orderBy(foodList, selectedField, selectedOrder);
-        setFoodList(orderedFoodList);
+        const orderedFoodList = orderBy(
+            sortedFoodList,
+            selectedField,
+            selectedOrder
+        );
+        setSortedFoodList(orderedFoodList);
     }, [selectedField, selectedOrder]);
 
     useEffect(() => {
-        setFoodList(mockFoodListData);
+        setSortedFoodList(foodList);
     }, []);
 
     const handleSortFieldChange = (field: SelectedFieldType) => {
@@ -89,7 +97,7 @@ const Food = () => {
                         sortButtons={sortOrderButtons}
                     />
                 </div>
-                <FoodList foodList={foodList} />
+                <FoodList foodList={sortedFoodList} />
             </section>
         </article>
     );
