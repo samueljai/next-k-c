@@ -3,6 +3,9 @@ import { fetchBeaches, errorMessage } from './beachService';
 
 jest.mock('./beachService');
 
+afterEach(() => {
+    jest.resetAllMocks();
+});
 describe('beachService', () => {
     it('fetchBeaches function returns mock data if successful', async () => {
         const mockGetBeachListData = fetchBeaches as jest.MockedFunction<
