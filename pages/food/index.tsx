@@ -1,4 +1,5 @@
 import { InferGetServerSidePropsType } from 'next';
+import Loading from '../../components/Common/Loading/Loading';
 import Food from '../../components/Food/Food';
 
 export const getServerSideProps = async () => {
@@ -15,7 +16,7 @@ export const getServerSideProps = async () => {
 function index({
     foodList,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-    if (!foodList) return <div>Loading...</div>;
+    if (!foodList) return <Loading />;
 
     return <Food foodList={foodList} />;
 }
