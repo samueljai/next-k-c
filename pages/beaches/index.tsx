@@ -1,20 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useRootStore } from '../../providers/RootStoreProvider';
+import { fetchBeaches } from '../../services/beachService';
 import Loading from '../../components/Common/Loading/Loading';
 import Beaches from '../../components/Beaches/Beaches';
-import { getBeachListData } from '../../data/beachData';
 
 function index() {
-    const [beachList, setBeachList] = useState(null);
+    const {
+        beachStore: { beachList, hydrate },
+    } = useRootStore();
 
     useEffect(() => {
-        const { beachList } = getBeachListData(true);
+        const data = fetchBeaches(true);
 
-        setBeachList(beachList);
+        hydrate(data);
     }, []);
 
     if (!beachList) return <Loading />;
 
-    return <Beaches beachList={beachList} />;
+    return <Beaches />;
 }
 
 export default index;

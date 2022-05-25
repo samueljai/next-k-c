@@ -1,60 +1,44 @@
-import { useEffect, useState } from 'react';
+import { observer } from 'mobx-react-lite';
+import { useRootStore } from '../../providers/RootStoreProvider';
+import { SortFieldType, SortOrderType } from '../../stores/BeachStore';
 import SubHeader from '../Common/SubHeader/SubHeader';
-import BeachList from './Components/BeachList/BeachList';
-import { BeachItemProps } from './Components/BeachListItem/BeachListItem';
-import { SortButtonType } from '../Common/Sort/SortButton';
 import SortBy from '../Common/Sort/SortBy';
-import orderBy from 'lodash.orderby';
+import { SortButtonType } from '../Common/Sort/SortButton';
+import BeachList from './Components/BeachList/BeachList';
 import styles from './beaches.module.scss';
 
-type BeachProps = {
-    beachList: BeachItemProps[] | null;
-};
-type SelectedFieldType = 'name' | 'index';
-type SelectedOrderType = 'asc' | 'desc';
-type SortFieldButtonsType = SortButtonType<SelectedFieldType>[];
-type SortOrderButtonsType = SortButtonType<SelectedOrderType>[];
+type SortFieldButtonsType = SortButtonType<SortFieldType>[];
+type SortOrderButtonsType = SortButtonType<SortOrderType>[];
 
-const Beaches = ({ beachList }: BeachProps) => {
-    const [sortedBeachList, setSortedBeachList] = useState<
-        BeachItemProps[] | null
-    >(null);
-    const [selectedField, setSelectedField] =
-        useState<SelectedFieldType>('index');
-    const [selectedOrder, setSelectedOrder] =
-        useState<SelectedOrderType>('asc');
+const Beaches = () => {
+    const {
+        beachStore: {
+            beachList,
+            sortField,
+            sortOrder,
+            sortByField,
+            sortByOrder,
+        },
+    } = useRootStore();
 
-    useEffect(() => {
-        const orderedFoodList = orderBy(
-            sortedBeachList,
-            selectedField,
-            selectedOrder
-        );
-        setSortedBeachList(orderedFoodList);
-    }, [selectedField, selectedOrder]);
-
-    useEffect(() => {
-        setSortedBeachList(beachList);
-    }, []);
-
-    const handleSortFieldChange = (field: SelectedFieldType) => {
-        setSelectedField(field);
+    const handleSortFieldChange = (sortValue: SortFieldType) => {
+        sortByField(sortValue);
     };
 
-    const handleSortOrderChange = (order: SelectedOrderType) => {
-        setSelectedOrder(order);
+    const handleSortOrderChange = (sortValue: SortOrderType) => {
+        sortByOrder(sortValue);
     };
 
     const sortFieldButtons: SortFieldButtonsType = [
         {
             text: 'Rating',
-            currentlySelected: selectedField,
+            currentlySelected: sortField,
             sortValue: 'index',
             onClick: handleSortFieldChange,
         },
         {
             text: 'Name',
-            currentlySelected: selectedField,
+            currentlySelected: sortField,
             sortValue: 'name',
             onClick: handleSortFieldChange,
         },
@@ -63,13 +47,13 @@ const Beaches = ({ beachList }: BeachProps) => {
     const sortOrderButtons: SortOrderButtonsType = [
         {
             text: 'Asc',
-            currentlySelected: selectedOrder,
+            currentlySelected: sortOrder,
             sortValue: 'asc',
             onClick: handleSortOrderChange,
         },
         {
             text: 'Desc',
-            currentlySelected: selectedOrder,
+            currentlySelected: sortOrder,
             sortValue: 'desc',
             onClick: handleSortOrderChange,
         },
@@ -91,10 +75,10 @@ const Beaches = ({ beachList }: BeachProps) => {
                         sortButtons={sortOrderButtons}
                     />
                 </div>
-                <BeachList beachList={sortedBeachList} />
+                <BeachList beachList={beachList} />
             </section>
         </article>
     );
 };
 
-export default Beaches;
+export default observer(Beaches);

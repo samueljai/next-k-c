@@ -11,7 +11,6 @@ import RootStore, { RootStoreHydrationType } from '../stores/RootStore';
 let rootStore: RootStore;
 
 export const RootStoreContext = createContext<RootStore>({} as RootStore);
-// RootStoreContext.displayName = "RootStoreContext";
 
 export type RootStoreComponentType = FC<{
     hydrationData?: RootStoreHydrationType;

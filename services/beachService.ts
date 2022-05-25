@@ -1,22 +1,12 @@
 import { getBeachListData } from '../data/beachData';
-import { BeachItemProps } from '../components/Beaches/Components/BeachListItem/BeachListItem';
+import { BeachListProps } from '../components/Beaches/Components/BeachList/BeachList';
 
-const errorMessage = 'Error fetching data';
+type BeachListType = BeachListProps | null;
 
-function fetchBeaches(returnData = true): Promise<BeachItemProps[]> {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            const beachListData = getBeachListData(returnData);
+function fetchBeaches(returnData = true): BeachListType {
+    const data = getBeachListData(returnData);
 
-            console.log('beachListData: ', beachListData);
-
-            if (beachListData) {
-                resolve(beachListData.beachList);
-            } else {
-                reject(errorMessage);
-            }
-        }, 0);
-    });
+    return data;
 }
 
-export { fetchBeaches, errorMessage };
+export { fetchBeaches };

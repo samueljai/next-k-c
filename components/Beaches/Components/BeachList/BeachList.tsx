@@ -1,8 +1,8 @@
-import BeachListItem, { BeachItemProps } from '../BeachListItem/BeachListItem';
+import BeachListItem, { BeachItemType } from '../BeachListItem/BeachListItem';
 import styles from './beachList.module.scss';
 
-type BeachListProps = {
-    beachList: BeachItemProps[];
+export type BeachListProps = {
+    beachList: BeachItemType[];
 };
 
 const BeachList = ({ beachList }: BeachListProps) => {

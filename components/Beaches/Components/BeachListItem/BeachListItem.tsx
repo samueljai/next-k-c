@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import Card from '../../../Common/Card/Card';
 import styles from './beachListItem.module.scss';
 
-export type BeachItemProps = {
+export type BeachItemType = {
     index: number;
     image: string;
     name: string;
@@ -10,7 +10,7 @@ export type BeachItemProps = {
 };
 
 type BeachListItemProps = {
-    beachItem: BeachItemProps;
+    beachItem: BeachItemType;
 };
 
 const BeachListItem = ({ beachItem }: BeachListItemProps) => {
