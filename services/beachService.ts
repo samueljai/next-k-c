@@ -1,10 +1,8 @@
-import { getBeachListData } from '../data/beachData';
 import { BeachListProps } from '../components/Beaches/Components/BeachList/BeachList';
 
-type BeachListType = BeachListProps | null;
-
-function fetchBeaches(returnData = true): BeachListType {
-    const data = getBeachListData(returnData);
+async function fetchBeaches(): Promise<BeachListProps> {
+    const response = await fetch('http://localhost:3000/api/beaches');
+    const { data } = await response.json();
 
     return data;
 }

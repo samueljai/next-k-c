@@ -1,20 +1,27 @@
-import React, { useEffect } from 'react';
-import { useRootStore } from '../../providers/RootStoreProvider';
+import { InferGetServerSidePropsType } from 'next';
 import { fetchBeaches } from '../../services/beachService';
 import Loading from '../../components/Common/Loading/Loading';
 import Beaches from '../../components/Beaches/Beaches';
 
-function index() {
-    const {
-        beachStore: { beachList, hydrate },
-    } = useRootStore();
+export const getServerSideProps = async () => {
+    const data = await fetchBeaches();
 
-    useEffect(() => {
-        const data = fetchBeaches(true);
+    return {
+        props: {
+            hydrationData: {
+                beachStore: {
+                    beachList: data,
+                },
+            },
+        },
+    };
+};
 
-        hydrate(data);
-    }, []);
-
+function index({
+    hydrationData: {
+        beachStore: { beachList },
+    },
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
     if (!beachList) return <Loading />;
 
     return <Beaches />;
