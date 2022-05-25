@@ -1,4 +1,3 @@
-import { enableStaticRendering } from 'mobx-react-lite';
 import {
     createContext,
     useContext,
@@ -8,8 +7,6 @@ import {
     ComponentType,
 } from 'react';
 import RootStore, { RootStoreHydrationType } from '../stores/RootStore';
-
-enableStaticRendering(typeof window === 'undefined');
 
 let rootStore: RootStore;
 

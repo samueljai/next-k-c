@@ -8,10 +8,9 @@ export type FoodListProps = {
 const FoodList = ({ foodList }: FoodListProps) => {
     return (
         <ul className={styles.foodlist} data-testid="foodlist">
-            {foodList &&
-                foodList.map((foodItem) => (
-                    <FoodListItem foodItem={foodItem} key={foodItem.id} />
-                ))}
+            {foodList?.map((foodItem) => (
+                <FoodListItem foodItem={foodItem} key={foodItem.id} />
+            ))}
         </ul>
     );
 };

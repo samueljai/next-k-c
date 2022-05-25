@@ -1,66 +1,44 @@
-import { useEffect, useState } from 'react';
+import { observer } from 'mobx-react-lite';
+import { useRootStore } from '../../providers/RootStoreProvider';
+import { SortFieldType, SortOrderType } from '../../stores/FoodStore';
 import SubHeader from '../Common/SubHeader/SubHeader';
-import FoodList from './components/FoodList/FoodList';
-import { FoodItemProps } from './components/FoodListItem/FoodListItem';
-import { SortButtonType } from '../Common/Sort/SortButton';
-import styles from './food.module.scss';
 import SortBy from '../Common/Sort/SortBy';
-import orderBy from 'lodash.orderby';
+import { SortButtonType } from '../Common/Sort/SortButton';
+import FoodList from './components/FoodList/FoodList';
+import styles from './food.module.scss';
 
-type FoodProps = {
-    foodList: FoodItemProps[] | null;
-};
-type SelectedFieldType = 'name' | 'origin' | 'starRating';
-type SelectedOrderType = 'asc' | 'desc';
-type SortFieldButtonsType = SortButtonType<SelectedFieldType>[];
-type SortOrderButtonsType = SortButtonType<SelectedOrderType>[];
+type SortFieldButtonsType = SortButtonType<SortFieldType>[];
+type SortOrderButtonsType = SortButtonType<SortOrderType>[];
 
-const Food = ({ foodList }: FoodProps) => {
-    const [sortedFoodList, setSortedFoodList] = useState<
-        FoodItemProps[] | null
-    >(null);
-    const [selectedField, setSelectedField] =
-        useState<SelectedFieldType>('name');
-    const [selectedOrder, setSelectedOrder] =
-        useState<SelectedOrderType>('asc');
+const Food = () => {
+    const {
+        foodStore: { foodList, sortField, sortOrder, sortByField, sortByOrder },
+    } = useRootStore();
 
-    useEffect(() => {
-        const orderedFoodList = orderBy(
-            sortedFoodList,
-            selectedField,
-            selectedOrder
-        );
-        setSortedFoodList(orderedFoodList);
-    }, [selectedField, selectedOrder]);
-
-    useEffect(() => {
-        setSortedFoodList(foodList);
-    }, []);
-
-    const handleSortFieldChange = (field: SelectedFieldType) => {
-        setSelectedField(field);
+    const handleSortFieldChange = (sortValue: SortFieldType) => {
+        sortByField(sortValue);
     };
 
-    const handleSortOrderChange = (order: SelectedOrderType) => {
-        setSelectedOrder(order);
+    const handleSortOrderChange = (sortValue: SortOrderType) => {
+        sortByOrder(sortValue);
     };
 
     const sortFieldButtons: SortFieldButtonsType = [
         {
             text: 'Name',
-            currentlySelected: selectedField,
+            currentlySelected: sortField,
             sortValue: 'name',
             onClick: handleSortFieldChange,
         },
         {
             text: 'Origin',
-            currentlySelected: selectedField,
+            currentlySelected: sortField,
             sortValue: 'origin',
             onClick: handleSortFieldChange,
         },
         {
             text: 'Rating',
-            currentlySelected: selectedField,
+            currentlySelected: sortField,
             sortValue: 'starRating',
             onClick: handleSortFieldChange,
         },
@@ -69,13 +47,13 @@ const Food = ({ foodList }: FoodProps) => {
     const sortOrderButtons: SortOrderButtonsType = [
         {
             text: 'Asc',
-            currentlySelected: selectedOrder,
+            currentlySelected: sortOrder,
             sortValue: 'asc',
             onClick: handleSortOrderChange,
         },
         {
             text: 'Desc',
-            currentlySelected: selectedOrder,
+            currentlySelected: sortOrder,
             sortValue: 'desc',
             onClick: handleSortOrderChange,
         },
@@ -97,10 +75,10 @@ const Food = ({ foodList }: FoodProps) => {
                         sortButtons={sortOrderButtons}
                     />
                 </div>
-                <FoodList foodList={sortedFoodList} />
+                <FoodList foodList={foodList} />
             </section>
         </article>
     );
 };
 
-export default Food;
+export default observer(Food);

@@ -1,8 +1,14 @@
 import { makeAutoObservable } from 'mobx';
-import FoodStore from './FoodStore';
+import { enableStaticRendering } from 'mobx-react-lite';
+import FoodStore, { FoodHydration } from './FoodStore';
 import BeachStore from './BeachStore';
 
-export type RootStoreHydrationType = {};
+enableStaticRendering(typeof window === 'undefined');
+
+export type RootStoreHydrationType = {
+    foodStore?: FoodHydration;
+    beachStore?: any;
+};
 
 class RootStore {
     foodStore: FoodStore;
@@ -14,7 +20,11 @@ class RootStore {
         makeAutoObservable(this);
     }
 
-    hydrate(data: RootStoreHydrationType) {}
+    hydrate(data: RootStoreHydrationType) {
+        if (data.foodStore) {
+            this.foodStore.hydrate(data.foodStore);
+        }
+    }
 }
 
 export default RootStore;

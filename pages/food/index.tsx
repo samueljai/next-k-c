@@ -9,16 +9,24 @@ export const getServerSideProps = async () => {
     const data = await response.json();
 
     return {
-        props: { foodList: data },
+        props: {
+            hydrationData: {
+                foodStore: {
+                    foodList: data,
+                },
+            },
+        },
     };
 };
 
 function index({
-    foodList,
+    hydrationData: {
+        foodStore: { foodList },
+    },
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
     if (!foodList) return <Loading />;
 
-    return <Food foodList={foodList} />;
+    return <Food />;
 }
 
 export default index;
