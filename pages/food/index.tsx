@@ -1,12 +1,10 @@
 import { InferGetServerSidePropsType } from 'next';
+import { fetchFood } from '../../services/foodService';
 import Loading from '../../components/Common/Loading/Loading';
 import Food from '../../components/Food/Food';
 
 export const getServerSideProps = async () => {
-    const response = await fetch(
-        'https://pair-programming-test.s3.eu-west-2.amazonaws.com/cuisine.json'
-    );
-    const data = await response.json();
+    const data = await fetchFood();
 
     return {
         props: {

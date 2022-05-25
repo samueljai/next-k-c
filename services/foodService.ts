@@ -3,14 +3,11 @@ import { FoodItemProps } from '../components/Food/components/FoodListItem/FoodLi
 const foodDataUrl =
     'https://pair-programming-test.s3.eu-west-2.amazonaws.com/cuisine.json';
 
-function fetchFood(): Promise<FoodItemProps[]> {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            fetch(foodDataUrl)
-                .then((data) => resolve(data.json()))
-                .catch((error) => reject('Error: ' + error));
-        }, 0);
-    });
+async function fetchFood(): Promise<FoodItemProps[]> {
+    const response = await fetch(foodDataUrl);
+    const data = await response.json();
+
+    return data;
 }
 
 export { fetchFood, foodDataUrl };
