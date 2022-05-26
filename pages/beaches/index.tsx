@@ -1,10 +1,10 @@
-import { InferGetServerSidePropsType } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { fetchBeaches } from '../../services/beachService';
 import Loading from '../../components/Common/Loading/Loading';
 import Beaches from '../../components/Beaches/Beaches';
 
-export const getServerSideProps = async () => {
-    const data = await fetchBeaches();
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    const data = await fetchBeaches(context.req);
 
     return {
         props: {
