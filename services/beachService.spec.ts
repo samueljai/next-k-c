@@ -1,11 +1,12 @@
+import { fetchBeaches } from './beachService';
 import { mockBeachListData } from '../mocks/beachListDataMock';
-import { fetchBeaches, errorMessage } from './beachService';
 
 jest.mock('./beachService');
 
 afterEach(() => {
     jest.resetAllMocks();
 });
+
 describe('beachService', () => {
     it('fetchBeaches function returns mock data if successful', async () => {
         const mockGetBeachListData = fetchBeaches as jest.MockedFunction<
@@ -14,14 +15,14 @@ describe('beachService', () => {
 
         mockGetBeachListData.mockImplementation(() => {
             return new Promise((resolve): void => {
-                resolve(mockBeachListData.beachList);
+                resolve(mockBeachListData);
             });
         });
 
         let beachList;
         await fetchBeaches().then((data) => (beachList = data));
 
-        expect(beachList).toMatchObject(mockBeachListData.beachList);
+        expect(beachList).toMatchObject(mockBeachListData);
         expect(mockGetBeachListData).toHaveBeenCalledTimes(1);
     });
 
@@ -30,8 +31,9 @@ describe('beachService', () => {
             typeof fetchBeaches
         >;
 
+        const errorMessage = 'can not access';
         mockGetBeachListData.mockImplementation(() => {
-            return new Promise((resolve, reject): void => {
+            return new Promise((_resolve, reject): void => {
                 reject(errorMessage);
             });
         });

@@ -1,10 +1,8 @@
-import { NextApiRequest } from 'next';
-import { BeachListProps } from '../components/Beaches/Components/BeachList/BeachList';
+import { BeachItemType } from '../components/Beaches/Components/BeachListItem/BeachListItem';
 
-async function fetchBeaches(req: NextApiRequest): Promise<BeachListProps> {
-    const protocol = req.headers['x-forwarded-proto'] || 'http';
-    const baseUrl = req ? `${protocol}://${req.headers.host}` : '';
+const baseUrl = process.env.BASE_URL;
 
+async function fetchBeaches(): Promise<BeachItemType[]> {
     const response = await fetch(baseUrl + '/api/beaches');
     const { data } = await response.json();
 

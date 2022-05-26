@@ -29,7 +29,7 @@ describe('foodService', () => {
 
         const errorMessage = 'can not access';
         mockGetFoodListData.mockImplementation(() => {
-            return new Promise((resolve, reject): void => {
+            return new Promise((_resolve, reject): void => {
                 reject(errorMessage);
             });
         });

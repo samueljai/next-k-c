@@ -7,7 +7,7 @@ const handler = nc<NextApiRequest, NextApiResponse>()
     // use connect based middleware
     .use(cors())
     // express like routing for methods
-    .get((req, res) => {
+    .get((_req, res) => {
         res.status(200);
         res.json({ data: beachData });
     });

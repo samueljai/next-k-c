@@ -1,10 +1,11 @@
+import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import BeachListItem from './BeachListItem';
 import { mockBeachListData } from '../../../../mocks/beachListDataMock';
 
 describe('BeachListItem', () => {
     it('renders the corrct name for a given beach item', () => {
-        const beachItem = mockBeachListData.beachList[0];
+        const beachItem = mockBeachListData[0];
 
         render(<BeachListItem beachItem={beachItem} />);
 
@@ -15,7 +16,7 @@ describe('BeachListItem', () => {
     });
 
     it('renders the corrct description for a given beach item', () => {
-        const beachItem = mockBeachListData.beachList[1];
+        const beachItem = mockBeachListData[1];
 
         render(<BeachListItem beachItem={beachItem} />);
 
@@ -24,7 +25,7 @@ describe('BeachListItem', () => {
     });
 
     it('renders the correct beach rating before the Name', () => {
-        const beachItem = mockBeachListData.beachList[2];
+        const beachItem = mockBeachListData[2];
 
         render(<BeachListItem beachItem={beachItem} />);
 

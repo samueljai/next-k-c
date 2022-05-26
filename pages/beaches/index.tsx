@@ -3,8 +3,8 @@ import { fetchBeaches } from '../../services/beachService';
 import Loading from '../../components/Common/Loading/Loading';
 import Beaches from '../../components/Beaches/Beaches';
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-    const data = await fetchBeaches(context.req);
+export const getServerSideProps: GetServerSideProps = async () => {
+    const data = await fetchBeaches();
 
     return {
         props: {
