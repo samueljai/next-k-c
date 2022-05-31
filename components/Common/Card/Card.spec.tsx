@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
-import { render, RenderResult } from '@testing-library/react';
-import Card from './Card';
+import { render, RenderResult, waitFor } from '@testing-library/react';
 import { mockFoodListData } from '../../../mocks/foodListDataMock';
+import Card from './Card';
 
 describe('Card', () => {
     let testingUtils: RenderResult<
@@ -16,8 +16,10 @@ describe('Card', () => {
     const text = 'Food List Item Card';
     const children = <div>{text}</div>;
 
-    beforeEach(() => {
-        testingUtils = render(<Card {...props}>{children}</Card>);
+    beforeEach(async () => {
+        testingUtils = await waitFor(() =>
+            render(<Card {...props}>{children}</Card>)
+        );
     });
     afterEach(() => {
         jest.resetAllMocks();
@@ -28,10 +30,12 @@ describe('Card', () => {
         const cardItem = getByRole('article');
         expect(cardItem).toHaveTextContent(text);
     });
-    it('renders an article with the provided image props', () => {
+    it('renders an article with the provided image props', async () => {
         const { getByAltText } = testingUtils;
-        const image = getByAltText(props.imgAlt) as HTMLImageElement;
-        expect(image).toBeInTheDocument();
-        expect(image.src).toBe(props.imgSrc);
+        await waitFor(() => {
+            const image = getByAltText(props.imgAlt) as HTMLImageElement;
+            expect(image).toBeInTheDocument();
+            expect(image.src).toContain(encodeURIComponent(props.imgSrc));
+        });
     });
 });

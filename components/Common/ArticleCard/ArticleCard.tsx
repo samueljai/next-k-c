@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './articleCard.module.scss';
 
 type ArticleCardProps = {
@@ -23,13 +24,14 @@ const ArticleCard = ({ to, imgSrc, imgAlt, title }: ArticleCardProps) => {
                         data-testid={`article-${title}`}
                     >
                         <div className={styles.articleCard__imageContainer}>
-                            <img
-                                className={styles.articleCard__image}
+                            <Image
                                 src={imgSrc}
                                 alt={imgAlt}
+                                layout="fill"
+                                objectFit="cover"
                             />
                         </div>
-                        <h4 className={styles.articleCard__title}>{title}</h4>
+                        <h2 className={styles.articleCard__title}>{title}</h2>
                     </div>
                 </a>
             </Link>

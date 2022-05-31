@@ -18,12 +18,12 @@ const BeachListItem = ({ beachItem }: BeachListItemProps) => {
         <li className={styles.beachListItem}>
             <Card imgSrc={beachItem.image} imgAlt="beachImage">
                 <div className={styles.beachListItem__info}>
-                    <h4 className={styles.beachListItem__infoName}>
+                    <h3 className={styles.beachListItem__infoName}>
                         {beachItem.index}. {beachItem.name}
-                    </h4>
-                    <h5 className={styles.beachListItem__infoDescription}>
+                    </h3>
+                    <h4 className={styles.beachListItem__infoDescription}>
                         {beachItem.description}
-                    </h5>
+                    </h4>
                 </div>
             </Card>
         </li>

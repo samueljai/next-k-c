@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styles from './card.module.scss';
 
 type CardProps = {
@@ -11,10 +12,11 @@ const Card = ({ children, imgSrc, imgAlt }: CardProps) => {
         <article className={styles.card}>
             <div className={styles.card__imageOuter}>
                 <div className={styles.card__imageContainer}>
-                    <img
-                        className={styles.card__image}
+                    <Image
                         alt={imgAlt}
                         src={imgSrc}
+                        layout="fill"
+                        objectFit="cover"
                     />
                 </div>
             </div>

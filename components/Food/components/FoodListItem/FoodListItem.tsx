@@ -16,11 +16,11 @@ type FoodListItemProps = {
 
 const FoodListItem = ({ foodItem }: FoodListItemProps) => {
     return (
-        <li className={styles.foodListItem}>
+        <li className={styles.foodListItem} data-testid="foodListItem">
             <Card imgSrc={foodItem.image} imgAlt="foodImage">
                 <div className={styles.foodListItem__info}>
-                    <h4>{foodItem.name}</h4>
-                    <h5>{foodItem.origin}</h5>
+                    <h3>{foodItem.name}</h3>
+                    <h4>{foodItem.origin}</h4>
                     <Stars numberOfStars={foodItem.starRating} />
                 </div>
             </Card>

@@ -1,5 +1,10 @@
 import '@testing-library/jest-dom';
-import { render, fireEvent, RenderResult } from '@testing-library/react';
+import {
+    render,
+    fireEvent,
+    RenderResult,
+    waitFor,
+} from '@testing-library/react';
 import singletonRouter from 'next/router';
 import mockRouter from 'next-router-mock';
 import ArticleCard from './ArticleCard';
@@ -35,11 +40,16 @@ describe('ArticleCard', () => {
 
         expect(cardItem).toHaveTextContent(props.title);
     });
-    it('renders an article with the provided image props', () => {
+    it('renders an article with the provided image props', async () => {
         const { getByAltText } = testingUtils;
-        const image = getByAltText(props.imgAlt) as HTMLImageElement;
-        expect(image).toBeInTheDocument();
-        expect(image.src).toBe(props.imgSrc);
+        await waitFor(() => {
+            const image = getByAltText(props.imgAlt) as HTMLImageElement;
+            const url = new URL(image.src);
+            console.log('url: ', url);
+
+            expect(image).toBeInTheDocument();
+            expect(image.src).toContain(encodeURIComponent(props.imgSrc));
+        });
     });
     it('renders an article and when clicked it routes to the provided "to" prop', () => {
         const { getByText } = testingUtils;
