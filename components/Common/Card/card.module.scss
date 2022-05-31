@@ -4,11 +4,12 @@
     position: relative;
     width: 100%;
     height: 100%;
-    background-color: #ffffff;
+    overflow: hidden;
     text-align: center;
     display: flex;
     flex-direction: column;
-    box-shadow: 0px 0px 10px 2px rgba(48, 48, 48, 0.2);
+    border-radius: 10px;
+    box-shadow: 5px 5px 7px #e4e4e4, -5px -5px 7px #ffffff;
 
     @media screen and (min-width: $mobileLarge-break) {
         flex-direction: row;
@@ -22,6 +23,7 @@
 .card__imageOuter,
 .card__info {
     width: 100%;
+    padding: 10px;
 
     @media screen and (min-width: $mobileLarge-break) {
         width: 50%;
@@ -33,8 +35,8 @@
 }
 
 .card__info {
-    padding: 10px;
     overflow: hidden;
+    padding: 0 10px 10px;
 }
 
 .card__imageContainer {
@@ -43,6 +45,7 @@
     overflow: hidden;
     padding-top: 75%;
     position: relative;
+    border-radius: 5px 5px 0 0;
 }
 
 .card__image {
