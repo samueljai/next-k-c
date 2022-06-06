@@ -1,7 +1,19 @@
 {
     "root": true,
-    "extends": ["next/core-web-vitals"],
-    "plugins": ["testing-library"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:jsx-a11y/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "next/core-web-vitals",
+        "next"
+    ],
+    "plugins": ["testing-library", "jest"],
+    "env": {
+        "jest/globals": true
+    },
     "overrides": [
         // Only uses Testing Library lint rules in test files
         {
@@ -11,5 +23,15 @@
             ],
             "extends": ["plugin:testing-library/react"]
         }
-    ]
+    ],
+    "rules": {
+        "jsx-a11y/anchor-is-valid": [
+            "error",
+            {
+                "components": ["Link"],
+                "specialLink": ["hrefLeft", "hrefRight"],
+                "aspects": ["invalidHref", "preferButton"]
+            }
+        ]
+    }
 }

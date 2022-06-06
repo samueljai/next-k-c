@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import SortBy from './SortBy';
 
 describe('SortBy', () => {
@@ -19,8 +19,8 @@ describe('SortBy', () => {
             sortButtons: sortFieldButtons,
         };
 
-        const { getByTestId } = render(<SortBy {...sortByProps} />);
-        const sortBy = getByTestId(
+        render(<SortBy {...sortByProps} />);
+        const sortBy = screen.getByTestId(
             new RegExp(`sortBy__${sortByProps.testId}`, 'i')
         );
         expect(sortBy).toBeInTheDocument();
@@ -48,11 +48,8 @@ describe('SortBy', () => {
             sortButtons: sortFieldButtons,
         };
 
-        const { getByTestId } = render(<SortBy {...sortByProps} />);
-
-        const sortBy = getByTestId(
-            new RegExp(`sortBy__${sortByProps.testId}`, 'i')
-        );
-        expect(sortBy.children.length).toBe(sortFieldButtons.length);
+        render(<SortBy {...sortByProps} />);
+        const sortButtons = screen.queryAllByRole('button');
+        expect(sortButtons.length).toBe(sortFieldButtons.length);
     });
 });

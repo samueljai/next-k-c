@@ -21,6 +21,12 @@
         "noImplicitReturns": true,
         "incremental": true
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "data/beachData.js"],
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.spec.tsx",
+        "data/beachData.js"
+    ],
     "exclude": ["node_modules"]
 }

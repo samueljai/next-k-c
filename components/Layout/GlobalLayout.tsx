@@ -1,3 +1,4 @@
+import React from 'react';
 import Header from '../Common/Header/Header';
 import styles from './globalLayout.module.scss';
 

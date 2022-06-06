@@ -6,7 +6,7 @@ type StarsProps = {
 };
 
 const Stars = ({ numberOfStars }: StarsProps) => {
-    let stars = new Array(numberOfStars).fill(1);
+    const stars = new Array(numberOfStars).fill(1);
 
     return (
         <ul className={styles.stars}>

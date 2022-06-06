@@ -1,3 +1,5 @@
+import React from 'react';
+
 type ButtonProps = {
     buttonText: string;
     onClick: React.MouseEventHandler;
