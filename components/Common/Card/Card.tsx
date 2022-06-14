@@ -11,7 +11,7 @@ type CardProps = {
 const Card = ({ children, imgSrc, imgAlt }: CardProps) => {
     return (
         <article className={styles.card}>
-            <div className={styles.card__imageOuter}>
+            <section className={styles.card__imageOuter}>
                 <div className={styles.card__imageContainer}>
                     <Image
                         alt={imgAlt}
@@ -20,8 +20,8 @@ const Card = ({ children, imgSrc, imgAlt }: CardProps) => {
                         objectFit="cover"
                     />
                 </div>
-            </div>
-            <div className={styles.card__info}>{children}</div>
+            </section>
+            <section className={styles.card__info}>{children}</section>
         </article>
     );
 };

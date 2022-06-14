@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import { useRootStore } from '../../providers/RootStoreProvider';
 import { SortFieldType, SortOrderType } from '../../stores/FoodStore';
 import SubHeader from '../Common/SubHeader/SubHeader';
-import SortBy from '../Common/Sort/SortBy';
+import SortButtons from '../Common/Sort/SortButtons';
 import { SortButtonType } from '../Common/Sort/SortButton';
 import FoodList from './components/FoodList/FoodList';
 import styles from './food.module.scss';
@@ -63,18 +63,18 @@ const Food = () => {
         <article className={styles.food}>
             <SubHeader title="Food" />
             <section className={styles.food__content}>
-                <div className={styles.food__sortBy}>
-                    <SortBy
+                <form className={styles.food__sortBy}>
+                    <SortButtons
                         classname="field"
                         testId="field"
                         sortButtons={sortFieldButtons}
                     />
-                    <SortBy
+                    <SortButtons
                         classname="order"
                         testId="order"
                         sortButtons={sortOrderButtons}
                     />
-                </div>
+                </form>
                 <FoodList foodList={foodList} />
             </section>
         </article>

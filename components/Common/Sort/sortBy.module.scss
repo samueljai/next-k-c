@@ -1,9 +1,0 @@
-@import '../../../styles/variables.module.scss';
-
-.sortBy__field {
-    margin: 0 0 10px;
-
-    @media screen and (min-width: $mobileLarge-break) {
-        margin: 0;
-    }
-}

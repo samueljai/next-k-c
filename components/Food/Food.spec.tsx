@@ -20,7 +20,7 @@ describe('Food List', () => {
 
         expect(screen.getByText('Food')).toBeInTheDocument();
         expect(
-            screen.getAllByTestId(new RegExp(`sortBy__`, 'i')).length
+            screen.getAllByTestId(new RegExp(`sortButtons__`, 'i')).length
         ).toBeGreaterThan(0);
         expect(screen.getByTestId('foodlist')).toBeInTheDocument();
     });

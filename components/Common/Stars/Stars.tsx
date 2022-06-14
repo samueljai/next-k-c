@@ -1,5 +1,4 @@
 import Star from './Star';
-import styles from './stars.module.scss';
 
 type StarsProps = {
     numberOfStars: number;
@@ -7,11 +6,12 @@ type StarsProps = {
 
 const Stars = ({ numberOfStars }: StarsProps) => {
     const stars = new Array(numberOfStars).fill(1);
+    const ariaLabel = `${numberOfStars} / 5`;
 
     return (
-        <ul className={styles.stars}>
+        <span aria-label={ariaLabel}>
             {stars && stars.map((_star, index) => <Star key={index} />)}
-        </ul>
+        </span>
     );
 };
 

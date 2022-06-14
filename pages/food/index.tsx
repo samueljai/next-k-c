@@ -34,7 +34,7 @@ function index({
                     content="List of the best Foods of the World"
                 />
             </Head>
-            <Food />;
+            <Food />
         </>
     );
 }

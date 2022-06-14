@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import { useRootStore } from '../../providers/RootStoreProvider';
 import { SortFieldType, SortOrderType } from '../../stores/BeachStore';
 import SubHeader from '../Common/SubHeader/SubHeader';
-import SortBy from '../Common/Sort/SortBy';
+import SortButtons from '../Common/Sort/SortButtons';
 import { SortButtonType } from '../Common/Sort/SortButton';
 import BeachList from './Components/BeachList/BeachList';
 import styles from './beaches.module.scss';
@@ -64,12 +64,12 @@ const Beaches = () => {
             <SubHeader title="Beaches" />
             <section className={styles.beaches__content}>
                 <div className={styles.beaches__sortBy}>
-                    <SortBy
+                    <SortButtons
                         classname="field"
                         testId="field"
                         sortButtons={sortFieldButtons}
                     />
-                    <SortBy
+                    <SortButtons
                         classname="order"
                         testId="order"
                         sortButtons={sortOrderButtons}

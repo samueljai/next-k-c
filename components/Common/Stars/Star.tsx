@@ -3,9 +3,15 @@ import styles from './star.module.scss';
 
 const Star = () => {
     return (
-        <li className={styles.star__image}>
-            <Image src="/star.png" alt="star" width={15} height={15} />
-        </li>
+        <span className={styles.star__image}>
+            <Image
+                src="/star.png"
+                alt="star rating"
+                layout="fixed"
+                width={15}
+                height={15}
+            />
+        </span>
     );
 };
 

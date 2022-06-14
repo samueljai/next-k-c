@@ -12,12 +12,13 @@ describe('SortButton', () => {
                 sortValue: 'origin',
                 onClick: handleClick,
             },
+            groupName: 'test_id',
         };
 
         render(<SortButton {...props} />);
 
-        const sortButton = screen.getByRole('button');
-        expect(sortButton).toHaveTextContent(props.sortButton.text);
+        const sortButton = screen.getByLabelText(props.sortButton.text);
+        expect(sortButton).toBeInTheDocument();
     });
     it('renders a button without the "sortButton--selected" classname for a non selected button', () => {
         const handleClick = jest.fn();
@@ -28,12 +29,13 @@ describe('SortButton', () => {
                 sortValue: 'origin',
                 onClick: handleClick,
             },
+            groupName: 'test_id',
         };
 
         render(<SortButton {...props} />);
 
-        const sortButton = screen.getByRole('button');
-        expect(sortButton).not.toHaveClass('sortButton--selected');
+        const sortButton = screen.getByLabelText(props.sortButton.text);
+        expect(sortButton).not.toBeChecked();
     });
     it('renders a button with the "sortButton--selected" classname for a selected button', () => {
         const handleClick = jest.fn();
@@ -44,12 +46,13 @@ describe('SortButton', () => {
                 sortValue: 'name',
                 onClick: handleClick,
             },
+            groupName: 'test_id',
         };
 
         render(<SortButton {...props} />);
 
-        const sortButton = screen.getByRole('button');
-        expect(sortButton).toHaveClass('sortButton--selected');
+        const sortButton = screen.getByLabelText(props.sortButton.text);
+        expect(sortButton).toBeChecked();
     });
     it('calls the provided onClick prop function when clicking a non selected button', () => {
         const handleClick = jest.fn();
@@ -60,11 +63,12 @@ describe('SortButton', () => {
                 sortValue: 'origin',
                 onClick: handleClick,
             },
+            groupName: 'test_id',
         };
 
         render(<SortButton {...props} />);
 
-        const sortButton = screen.getByRole('button');
+        const sortButton = screen.getByLabelText(props.sortButton.text);
         fireEvent.click(sortButton);
         expect(handleClick).toHaveBeenCalledTimes(1);
     });
@@ -77,11 +81,12 @@ describe('SortButton', () => {
                 sortValue: 'name',
                 onClick: handleClick,
             },
+            groupName: 'test_id',
         };
 
         render(<SortButton {...props} />);
 
-        const sortButton = screen.getByRole('button');
+        const sortButton = screen.getByLabelText(props.sortButton.text);
         fireEvent.click(sortButton);
         expect(handleClick).toHaveBeenCalledTimes(0);
     });

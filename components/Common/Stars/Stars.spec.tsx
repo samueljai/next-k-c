@@ -8,7 +8,7 @@ describe('Stars', () => {
 
             render(<Stars numberOfStars={numberOfStars} />);
 
-            const stars = screen.queryAllByAltText('star');
+            const stars = screen.queryAllByAltText('star rating');
             expect(stars.length).toEqual(numberOfStars);
         });
         it('renders 3 star', () => {
@@ -16,7 +16,7 @@ describe('Stars', () => {
 
             render(<Stars numberOfStars={numberOfStars} />);
 
-            const stars = screen.queryAllByAltText('star');
+            const stars = screen.queryAllByAltText('star rating');
             expect(stars.length).toEqual(numberOfStars);
         });
         it('renders 0 stars', () => {
@@ -24,7 +24,7 @@ describe('Stars', () => {
 
             render(<Stars numberOfStars={numberOfStars} />);
 
-            const stars = screen.queryAllByAltText('star');
+            const stars = screen.queryAllByAltText('star rating');
             expect(stars.length).toEqual(numberOfStars);
         });
     });

@@ -27,7 +27,7 @@ describe('FoodListItem', () => {
 
         render(<FoodListItem foodItem={foodItem} />);
 
-        const foodListItemStars = screen.getAllByAltText('star');
+        const foodListItemStars = screen.getAllByAltText('star rating');
         expect(foodListItemStars.length).toBe(foodItem.starRating);
     });
 });

@@ -1,0 +1,19 @@
+@import '../../../styles/variables.module.scss';
+
+.sortButtons {
+    display: flex;
+    border: 0;
+    padding: 0;
+    margin: 0 0 10px;
+
+    menu {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    @media screen and (min-width: $mobileLarge-break) {
+        margin: 0;
+    }
+}

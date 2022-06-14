@@ -1,10 +1,10 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import SortBy from './SortBy';
+import SortButtons from './SortButtons';
 
-describe('SortBy', () => {
+describe('SortButtons', () => {
     const handleClick = jest.fn();
-    it('renders a sortBy section with the given testId and classname prop', () => {
+    it('renders a sortButtons section with the given testId and classname prop', () => {
         const sortFieldButtons = [
             {
                 text: 'Origin',
@@ -13,21 +13,23 @@ describe('SortBy', () => {
                 onClick: handleClick,
             },
         ];
-        const sortByProps = {
+        const sortButtonsProps = {
             classname: 'field',
             testId: 'field',
             sortButtons: sortFieldButtons,
         };
 
-        render(<SortBy {...sortByProps} />);
-        const sortBy = screen.getByTestId(
-            new RegExp(`sortBy__${sortByProps.testId}`, 'i')
+        render(<SortButtons {...sortButtonsProps} />);
+        const sortButtons = screen.getByTestId(
+            new RegExp(`sortButtons__${sortButtonsProps.testId}`, 'i')
         );
-        expect(sortBy).toBeInTheDocument();
-        expect(sortBy).toHaveClass(`sortBy__${sortByProps.classname}`);
+        expect(sortButtons).toBeInTheDocument();
+        expect(sortButtons).toHaveClass(
+            `sortButtons__${sortButtonsProps.classname}`
+        );
     });
 
-    it('renders a sortBy section with the correct amount of sortButtons provided', () => {
+    it('renders a sortButtons section with the correct amount of sortButtons provided', () => {
         const sortFieldButtons = [
             {
                 text: 'Origin',
@@ -42,14 +44,14 @@ describe('SortBy', () => {
                 onClick: handleClick,
             },
         ];
-        const sortByProps = {
+        const sortButtonsProps = {
             classname: 'field',
             testId: 'field',
             sortButtons: sortFieldButtons,
         };
 
-        render(<SortBy {...sortByProps} />);
-        const sortButtons = screen.queryAllByRole('button');
+        render(<SortButtons {...sortButtonsProps} />);
+        const sortButtons = screen.queryAllByRole('radio');
         expect(sortButtons.length).toBe(sortFieldButtons.length);
     });
 });

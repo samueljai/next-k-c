@@ -18,21 +18,19 @@ const ArticleCard = ({ to, imgSrc, imgAlt, title }: ArticleCardProps) => {
     return (
         <article className={styles.articleCard}>
             <Link href={to} style={linkStyle}>
-                <a>
-                    <div
-                        className={styles.articleCard__inner}
-                        data-testid={`article-${title}`}
-                    >
-                        <div className={styles.articleCard__imageContainer}>
-                            <Image
-                                src={imgSrc}
-                                alt={imgAlt}
-                                layout="fill"
-                                objectFit="cover"
-                            />
-                        </div>
-                        <h2 className={styles.articleCard__title}>{title}</h2>
+                <a
+                    className={styles.articleCard__inner}
+                    data-testid={`article-${title}`}
+                >
+                    <div className={styles.articleCard__imageContainer}>
+                        <Image
+                            src={imgSrc}
+                            alt={imgAlt}
+                            layout="fill"
+                            objectFit="cover"
+                        />
                     </div>
+                    <h2 className={styles.articleCard__title}>{title}</h2>
                 </a>
             </Link>
         </article>
