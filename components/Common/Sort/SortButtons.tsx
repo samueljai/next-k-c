@@ -23,6 +23,7 @@ function SortButtons<T>({
         <fieldset
             className={sortButtonsClassname}
             data-testid={`sortButtons__${testId}`}
+            role="radiogroup"
         >
             <menu>
                 {sortButtons &&
