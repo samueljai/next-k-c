@@ -11,17 +11,28 @@ export type BeachItemType = {
 
 type BeachListItemProps = {
     beachItem: BeachItemType;
+    position: string;
 };
 
-const BeachListItem = ({ beachItem }: BeachListItemProps) => {
+const BeachListItem = ({ beachItem, position }: BeachListItemProps) => {
     return (
         <li className={styles.beachListItem}>
-            <Card imgSrc={beachItem.image} imgAlt="beachImage">
+            <Card
+                articleAriaLabel={`Number ${position}: ${beachItem.name}`}
+                imgSrc={beachItem.image}
+                imgAlt={`${beachItem.name}`}
+            >
                 <div className={styles.beachListItem__info}>
-                    <h3 className={styles.beachListItem__infoName}>
-                        {beachItem.index}. {beachItem.name}
+                    <h3
+                        className={styles.beachListItem__infoName}
+                        aria-label={`Rating: ${beachItem.index}. ${beachItem.name}`}
+                    >
+                        {`${beachItem.index}. ${beachItem.name}`}
                     </h3>
-                    <h4 className={styles.beachListItem__infoDescription}>
+                    <h4
+                        className={styles.beachListItem__infoDescription}
+                        aria-label={`Description: ${beachItem.description}`}
+                    >
                         {beachItem.description}
                     </h4>
                 </div>

@@ -21,6 +21,7 @@ const ArticleCard = ({ to, imgSrc, imgAlt, title }: ArticleCardProps) => {
                 <a
                     className={styles.articleCard__inner}
                     data-testid={`article-${title}`}
+                    aria-label={`${title} Article`}
                 >
                     <div className={styles.articleCard__imageContainer}>
                         <Image
@@ -30,7 +31,12 @@ const ArticleCard = ({ to, imgSrc, imgAlt, title }: ArticleCardProps) => {
                             objectFit="cover"
                         />
                     </div>
-                    <h2 className={styles.articleCard__title}>{title}</h2>
+                    <h2
+                        aria-hidden="true"
+                        className={styles.articleCard__title}
+                    >
+                        {title}
+                    </h2>
                 </a>
             </Link>
         </article>

@@ -6,6 +6,7 @@ type RadioButtonProps = {
     onValueChange: React.ChangeEventHandler;
     label: string;
     isChecked: boolean;
+    ariaLabel: string;
     dataTestId: string;
     className?: string;
     style?: object;
@@ -16,8 +17,9 @@ function RadioButton({
     onValueChange,
     label,
     isChecked,
-    className,
+    ariaLabel,
     dataTestId,
+    className,
     style,
 }: RadioButtonProps) {
     const labelClassnames = classNames(className, styles.radioButton__label);
@@ -31,12 +33,14 @@ function RadioButton({
                 name={buttonGroupName}
                 checked={isChecked}
                 onChange={onValueChange}
+                aria-label={ariaLabel}
             />
             <label
                 htmlFor={label}
                 className={labelClassnames}
                 data-testid={dataTestId}
                 style={style}
+                aria-hidden="true"
             >
                 {label}
             </label>

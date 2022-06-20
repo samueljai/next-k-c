@@ -34,7 +34,7 @@ function index({
                     content="List of the best Beaches in the World"
                 />
             </Head>
-            <Beaches />;
+            <Beaches />
         </>
     );
 }

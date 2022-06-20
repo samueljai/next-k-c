@@ -35,12 +35,14 @@ const Beaches = () => {
             currentlySelected: sortField,
             sortValue: 'index',
             onClick: handleSortFieldChange,
+            ariaLabel: 'Sort By Rating',
         },
         {
             text: 'Name',
             currentlySelected: sortField,
             sortValue: 'name',
             onClick: handleSortFieldChange,
+            ariaLabel: 'Sort By Name',
         },
     ];
 
@@ -50,31 +52,41 @@ const Beaches = () => {
             currentlySelected: sortOrder,
             sortValue: 'asc',
             onClick: handleSortOrderChange,
+            ariaLabel: 'Sort By Ascending Order',
         },
         {
             text: 'Desc',
             currentlySelected: sortOrder,
             sortValue: 'desc',
             onClick: handleSortOrderChange,
+            ariaLabel: 'Sort By Descending Order',
         },
     ];
 
     return (
         <article className={styles.beaches}>
             <SubHeader title="Beaches" />
-            <section className={styles.beaches__content}>
-                <div className={styles.beaches__sortBy}>
+            <section
+                className={styles.beaches__content}
+                aria-label="Beach List"
+            >
+                <form
+                    className={styles.beaches__sortBy}
+                    aria-label="Sort Beach List"
+                >
                     <SortButtons
                         classname="field"
                         testId="field"
                         sortButtons={sortFieldButtons}
+                        ariaLabel="Sort By Field"
                     />
                     <SortButtons
                         classname="order"
                         testId="order"
                         sortButtons={sortOrderButtons}
+                        ariaLabel="Sort By Order"
                     />
-                </div>
+                </form>
                 <BeachList beachList={beachList} />
             </section>
         </article>

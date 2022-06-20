@@ -5,6 +5,7 @@ export type SortButtonType<T> = {
     currentlySelected: T;
     sortValue: T;
     onClick: (sortValue: T) => void;
+    ariaLabel: string;
 };
 
 type SortButtonProps<T> = {
@@ -13,7 +14,8 @@ type SortButtonProps<T> = {
 };
 
 function SortButton<T>({ sortButton, groupName }: SortButtonProps<T>) {
-    const { currentlySelected, text, sortValue, onClick } = sortButton;
+    const { currentlySelected, text, sortValue, onClick, ariaLabel } =
+        sortButton;
 
     const isSelectedButton = sortValue === currentlySelected;
 
@@ -28,6 +30,7 @@ function SortButton<T>({ sortButton, groupName }: SortButtonProps<T>) {
             label={text}
             isChecked={isSelectedButton}
             dataTestId={`sortButton-${sortValue}`}
+            ariaLabel={ariaLabel}
         />
     );
 }

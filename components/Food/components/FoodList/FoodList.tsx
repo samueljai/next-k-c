@@ -7,9 +7,17 @@ export type FoodListProps = {
 
 const FoodList = ({ foodList }: FoodListProps) => {
     return (
-        <ul className={styles.foodlist} data-testid="foodlist">
-            {foodList?.map((foodItem) => (
-                <FoodListItem foodItem={foodItem} key={foodItem.id} />
+        <ul
+            className={styles.foodlist}
+            data-testid="foodlist"
+            aria-label="Best Food of the World"
+        >
+            {foodList?.map((foodItem, index) => (
+                <FoodListItem
+                    foodItem={foodItem}
+                    key={foodItem.id}
+                    position={`${index + 1} of ${foodList.length}`}
+                />
             ))}
         </ul>
     );

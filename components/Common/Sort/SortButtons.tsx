@@ -6,12 +6,14 @@ type SortButtonsProps<T> = {
     classname: string;
     testId: string;
     sortButtons: SortButtonType<T>[];
+    ariaLabel: string;
 };
 
 function SortButtons<T>({
     classname,
     testId,
     sortButtons,
+    ariaLabel,
 }: SortButtonsProps<T>) {
     const sortButtonsFieldClassname = `sortButtons__${classname}`;
     const sortButtonsClassname = classNames(
@@ -24,6 +26,7 @@ function SortButtons<T>({
             className={sortButtonsClassname}
             data-testid={`sortButtons__${testId}`}
             role="radiogroup"
+            aria-label={ariaLabel}
         >
             <menu>
                 {sortButtons &&

@@ -12,15 +12,22 @@ export type FoodItemProps = {
 
 type FoodListItemProps = {
     foodItem: FoodItemProps;
+    position: string;
 };
 
-const FoodListItem = ({ foodItem }: FoodListItemProps) => {
+const FoodListItem = ({ foodItem, position }: FoodListItemProps) => {
     return (
         <li className={styles.foodListItem} data-testid="foodListItem">
-            <Card imgSrc={foodItem.image} imgAlt="foodImage">
+            <Card
+                articleAriaLabel={`Number ${position}: ${foodItem.name}`}
+                imgSrc={foodItem.image}
+                imgAlt={`${foodItem.name}`}
+            >
                 <div className={styles.foodListItem__info}>
                     <h3>{foodItem.name}</h3>
-                    <h4>{foodItem.origin}</h4>
+                    <h4 aria-label={`Origin ${foodItem.origin}`}>
+                        {foodItem.origin}
+                    </h4>
                     <Stars numberOfStars={foodItem.starRating} />
                 </div>
             </Card>

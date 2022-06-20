@@ -5,7 +5,7 @@ import styles from '../styles/Home.module.scss';
 
 const Home: NextPage = () => {
     return (
-        <section className={styles.home}>
+        <section className={styles.home} aria-label="Article List">
             <Head>
                 <title>Best of the World!</title>
                 <meta name="description" content="The best of the World" />
@@ -16,13 +16,13 @@ const Home: NextPage = () => {
                 <ArticleCard
                     to="/food"
                     imgSrc="https://pair-programming-test.s3.eu-west-2.amazonaws.com/images/chicken-jalfrezi.png"
-                    imgAlt="A curry"
+                    imgAlt=""
                     title="Food"
                 />
                 <ArticleCard
                     to="/beaches"
                     imgSrc="https://img.delicious.com.au/quCP16aS/del/2019/09/hahei-bay-new-zealand-114893-2.jpg"
-                    imgAlt="A beach"
+                    imgAlt=""
                     title="Beaches"
                 />
             </div>

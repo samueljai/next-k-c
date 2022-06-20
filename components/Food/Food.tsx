@@ -29,18 +29,21 @@ const Food = () => {
             currentlySelected: sortField,
             sortValue: 'name',
             onClick: handleSortFieldChange,
+            ariaLabel: 'Sort By Name',
         },
         {
             text: 'Origin',
             currentlySelected: sortField,
             sortValue: 'origin',
             onClick: handleSortFieldChange,
+            ariaLabel: 'Sort By Origin',
         },
         {
             text: 'Rating',
             currentlySelected: sortField,
             sortValue: 'starRating',
             onClick: handleSortFieldChange,
+            ariaLabel: 'Sort By Rating',
         },
     ];
 
@@ -50,29 +53,36 @@ const Food = () => {
             currentlySelected: sortOrder,
             sortValue: 'asc',
             onClick: handleSortOrderChange,
+            ariaLabel: 'Sort By Ascending Order',
         },
         {
             text: 'Desc',
             currentlySelected: sortOrder,
             sortValue: 'desc',
             onClick: handleSortOrderChange,
+            ariaLabel: 'Sort By Descending Order',
         },
     ];
 
     return (
         <article className={styles.food}>
             <SubHeader title="Food" />
-            <section className={styles.food__content}>
-                <form className={styles.food__sortBy}>
+            <section className={styles.food__content} aria-label="Food List">
+                <form
+                    className={styles.food__sortBy}
+                    aria-label="Sort Food List"
+                >
                     <SortButtons
                         classname="field"
                         testId="field"
                         sortButtons={sortFieldButtons}
+                        ariaLabel="Sort By Field"
                     />
                     <SortButtons
                         classname="order"
                         testId="order"
                         sortButtons={sortOrderButtons}
+                        ariaLabel="Sort By Order"
                     />
                 </form>
                 <FoodList foodList={foodList} />
