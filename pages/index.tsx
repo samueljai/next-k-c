@@ -5,14 +5,17 @@ import styles from '../styles/Home.module.scss';
 
 const Home: NextPage = () => {
     return (
-        <section className={styles.home} aria-label="Article List">
+        <div className={styles.home}>
             <Head>
                 <title>Best of the World!</title>
                 <meta name="description" content="The best of the World" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <div className={styles.home__articleList}>
+            <section
+                className={styles.home__articleList}
+                aria-label="Article List"
+            >
                 <ArticleCard
                     to="/food"
                     imgSrc="https://pair-programming-test.s3.eu-west-2.amazonaws.com/images/chicken-jalfrezi.png"
@@ -25,8 +28,8 @@ const Home: NextPage = () => {
                     imgAlt=""
                     title="Beaches"
                 />
-            </div>
-        </section>
+            </section>
+        </div>
     );
 };
 

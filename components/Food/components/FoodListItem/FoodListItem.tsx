@@ -25,9 +25,9 @@ const FoodListItem = ({ foodItem, position }: FoodListItemProps) => {
             >
                 <div className={styles.foodListItem__info}>
                     <h3>{foodItem.name}</h3>
-                    <h4 aria-label={`Origin ${foodItem.origin}`}>
+                    <p aria-label={`Origin ${foodItem.origin}`}>
                         {foodItem.origin}
-                    </h4>
+                    </p>
                     <Stars numberOfStars={foodItem.starRating} />
                 </div>
             </Card>

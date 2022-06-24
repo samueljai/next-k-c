@@ -29,12 +29,12 @@ const BeachListItem = ({ beachItem, position }: BeachListItemProps) => {
                     >
                         {`${beachItem.index}. ${beachItem.name}`}
                     </h3>
-                    <h4
+                    <p
                         className={styles.beachListItem__infoDescription}
                         aria-label={`Description: ${beachItem.description}`}
                     >
                         {beachItem.description}
-                    </h4>
+                    </p>
                 </div>
             </Card>
         </li>

@@ -21,7 +21,7 @@ const ArticleCard = ({ to, imgSrc, imgAlt, title }: ArticleCardProps) => {
                 <a
                     className={styles.articleCard__inner}
                     data-testid={`article-${title}`}
-                    aria-label={`${title} Article`}
+                    aria-label={`Best ${title} of the World`}
                 >
                     <div className={styles.articleCard__imageContainer}>
                         <Image
