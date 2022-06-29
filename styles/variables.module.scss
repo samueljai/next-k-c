@@ -9,3 +9,16 @@ $kinBackgroundColor: #f8f8f8;
 $kinDarkColor: #1c1a23;
 $kinMediumColor: #28262e;
 $kinHighlightColor: #a080fb;
+
+.screenReaderOnly {
+    position: absolute;
+    overflow: hidden;
+    border: 0;
+    padding: 0;
+    opacity: 0;
+    &:focus {
+        opacity: 1;
+        padding: 4px 8px;
+        z-index: 1;
+    }
+}
