@@ -5,9 +5,11 @@ import { mockBeachListData } from '../../../../mocks/beachListDataMock';
 
 describe('BeachListItem', () => {
     it('renders the corrct name for a given beach item', () => {
-        const beachItem = mockBeachListData[0];
+        const index = 0;
+        const beachItem = mockBeachListData[index];
+        const position = `${index + 1} of ${mockBeachListData.length}`;
 
-        render(<BeachListItem beachItem={beachItem} />);
+        render(<BeachListItem beachItem={beachItem} position={position} />);
 
         const beachListItemName = screen.getByText(
             new RegExp(beachItem.name, 'i')
@@ -16,18 +18,22 @@ describe('BeachListItem', () => {
     });
 
     it('renders the corrct description for a given beach item', () => {
-        const beachItem = mockBeachListData[1];
+        const index = 1;
+        const beachItem = mockBeachListData[index];
+        const position = `${index + 1} of ${mockBeachListData.length}`;
 
-        render(<BeachListItem beachItem={beachItem} />);
+        render(<BeachListItem beachItem={beachItem} position={position} />);
 
         const beachListItemOrigin = screen.getByText(beachItem.description);
         expect(beachListItemOrigin).toBeInTheDocument();
     });
 
     it('renders the correct beach rating before the Name', () => {
-        const beachItem = mockBeachListData[2];
+        const index = 2;
+        const beachItem = mockBeachListData[index];
+        const position = `${index + 1} of ${mockBeachListData.length}`;
 
-        render(<BeachListItem beachItem={beachItem} />);
+        render(<BeachListItem beachItem={beachItem} position={position} />);
 
         const beachListItemRating = screen.getByText(
             new RegExp(`${beachItem.index}. ${beachItem.name}`, 'i')
