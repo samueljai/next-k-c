@@ -8,7 +8,11 @@ type SkipLinkProps = {
 
 function SkipLink({ targetId, linkText }: SkipLinkProps) {
     return (
-        <a className={styles.skipLink} href={`#${targetId}`}>
+        <a
+            className={styles.skipLink}
+            href={`#${targetId}`}
+            data-testid="skipLink"
+        >
             {linkText}
         </a>
     );
